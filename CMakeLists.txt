@@ -30,6 +30,12 @@ target_include_directories(lineturtle_info PUBLIC
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})
 
+# Install Python executables
+install(PROGRAMS
+  scripts/lineturtle_joy.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 # Install launch files.
 install(DIRECTORY
   launch
