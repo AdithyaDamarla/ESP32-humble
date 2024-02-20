@@ -21,11 +21,18 @@ find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(micro_ros_agent REQUIRED)
+find_package(teleop_twist_joy REQUIRED)
 
+
+add_executable(lineturtle_info src/lineturtle_info.cpp)
 
 target_include_directories(lineturtle_info PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
+
+install(TARGETS lineturtle_info
+  DESTINATION lib/${PROJECT_NAME})
+
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})
@@ -35,7 +42,6 @@ install(PROGRAMS
   scripts/lineturtle_joy.py
   DESTINATION lib/${PROJECT_NAME}
 )
-
 # Install launch files.
 install(DIRECTORY
   launch
